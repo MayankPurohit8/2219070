@@ -1,12 +1,10 @@
 const express = require("express");
-const app = express();
-(async () => {
-  const { nanoid } = await import("nanoid");
-  console.log(nanoid());
-})();
 const cors = require("cors");
+const app = express();
+
 const link = require("../Logging Middleware/log");
 const { log, authenticate } = require("../Logging Middleware/log");
+
 app.use(cors());
 app.use(express.json());
 authenticate();
@@ -34,6 +32,7 @@ app.post("/shorturls", async (req, res) => {
         expiry: new Date(Date.now() + validity * 60 * 1000),
       });
     } else {
+      const { nanoid } = await import("nanoid");
       let code = shortCode || nanoid(10);
       while (await link.findOne({ shortCode: code })) {
         code = nanoid(10);
@@ -50,8 +49,11 @@ app.post("/shorturls", async (req, res) => {
       });
     }
   } catch (err) {
+    console.error(err);
     return res.status(500).json("something went wrong");
   }
 });
 
-app.listen(5000);
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
+});

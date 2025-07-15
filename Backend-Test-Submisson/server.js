@@ -1,6 +1,9 @@
 const express = require("express");
 const app = express();
-const { nanoid } = require("nanoid");
+(async () => {
+  const { nanoid } = await import("nanoid");
+  console.log(nanoid()); // use it as needed
+})();
 const cors = require("cors");
 const link = require("../Logging Middleware/log");
 const { log, authenticate } = require("../Logging Middleware/log");

@@ -1,5 +1,10 @@
 const mongoose = require("mongoose");
 
+mongoose.connect("mongodb://127.0.0.1:27017/shortener", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
 const linkSchema = mongoose.Schema({
   link: { type: String },
   shortCode: { type: String },

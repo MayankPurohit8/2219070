@@ -30,4 +30,4 @@ const log = async (stack, level, pkg, message) => {
   }
 };
 
-modules.export = { log, authenticate };
+module.exports = { log, authenticate };

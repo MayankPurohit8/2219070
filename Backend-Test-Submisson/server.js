@@ -2,13 +2,12 @@ const express = require("express");
 const app = express();
 const { nanoid } = require("nanoid");
 const cors = require("cors");
-const link = require("./model/link");
-const { log, authenticate } = require("./middleware/log");
+const link = require("../Logging Middleware/log");
+const { log, authenticate } = require("../Logging Middleware/log");
 app.use(cors());
 app.use(express.json());
 authenticate();
 
-app.post("", authMW, func);
 app.post("/shorturls", async (req, res) => {
   try {
     const { urlencoded, validity, shortCode } = req.body;

@@ -1,8 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const axios = require("axios");
-const link = require("../Logging Middleware/log");
+const link = require("./model/link");
 const { log, authenticate } = require("../Logging Middleware/log");
 
 app.use(cors());
